@@ -1,6 +1,7 @@
 package error
 
 import (
+	"errors"
 	"fmt"
 	"github.com/Islooper/error/tagerror"
 	"sync"
@@ -29,7 +30,7 @@ func newLinkError() *LinkError {
 	}
 }
 
-func (l *LinkError) Error(tag string, err error, format string, a ...any) *LinkError {
+func (l *LinkError) Error(tag string, err string, format string, a ...any) *LinkError {
 	if l == nil {
 		l = newLinkError()
 	}
@@ -41,7 +42,7 @@ func (l *LinkError) Error(tag string, err error, format string, a ...any) *LinkE
 	l.mutex.Lock()
 	defer l.mutex.Unlock()
 	node := &terror{
-		error: tagerror.New(tag, err, fmt.Sprintf(format, a...)),
+		error: tagerror.New(tag, errors.New(err), fmt.Sprintf(format, a...)),
 	}
 
 	if l.t == nil {

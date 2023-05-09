@@ -21,15 +21,14 @@ go get github.com/Islooer/error
  package error
 
 import (
-	"errors"
 	"testing"
 )
 
 func TestLinkError_Success(t *testing.T) {
 
-	err := GetError().Error("TestLinkError_Success", errors.New("TestLinkError_Success"), "").
-		Error("this is a test tag", errors.New("this is a test error"), "").
-		Error("", errors.New("test empty tag"), "")
+	err := GetError().Error("TestLinkError_Success", "TestLinkError_Success", "").
+		Error("this is a test tag", "this is a test error", "").
+		Error("", "test empty tag", "")
 
 	defer func() {
 		Destroy(err)
@@ -40,7 +39,7 @@ func TestLinkError_Success(t *testing.T) {
 
 func TestLinkError_NoInit(t *testing.T) {
 	var err *LinkError
-	err = err.Error("TestLinkError_NoInit", errors.New("TestLinkError_NoInit"), "")
+	err = err.Error("TestLinkError_NoInit", "TestLinkError_NoInit", "")
 
 	defer func() {
 		Destroy(err)
@@ -51,9 +50,9 @@ func TestLinkError_NoInit(t *testing.T) {
 
 func TestLinkError_GetTag(t *testing.T) {
 	var err *LinkError
-	err = err.Error("TestLinkError_GetTag", errors.New("TestLinkError_GetTag errors 1"), "").
-		Error("TestLinkError_GetTag", errors.New("TestLinkError_GetTag errors 2"), "").
-		Error("", errors.New("test error"), "")
+	err = err.Error("TestLinkError_GetTag", "TestLinkError_GetTag errors 1", "").
+		Error("TestLinkError_GetTag", "TestLinkError_GetTag errors 2", "").
+		Error("", "test error", "")
 
 	defer func() {
 		Destroy(err)
@@ -68,5 +67,6 @@ func TestLinkError_GetTag(t *testing.T) {
 	}
 
 }
+
 
 ```
