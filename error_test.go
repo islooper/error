@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestLinkError_Success(t *testing.T) {
+func TestLinkError_Normal(t *testing.T) {
 
 	err := GetError().Error("TestLinkError_Success", "TestLinkError_Success", "").
 		Error("this is a test tag", "this is a test error", "").
