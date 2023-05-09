@@ -70,3 +70,7 @@ func TestLinkError_GetTag(t *testing.T) {
 
 
 ```
+
+
+## 后续计划 🍺
+支持输出路径，支持输出行号，支持输出函数名，支持输出文件名，支持输出时间
